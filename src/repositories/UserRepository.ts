@@ -2,6 +2,10 @@ import { IUser } from '../interfaces/IUser';
 import { User } from '../models/User'; 
 
 class UserRepository {
+  static async findAll(): Promise<IUser[] | null> {
+    return User.find();
+  }
+
   static async getById(id: string): Promise<IUser | null> {
     return User.findById(id).exec();
   }

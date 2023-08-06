@@ -29,6 +29,13 @@ export class BookService {
 	}
 
     static async delete(id: string) {
+        const book = await BookRepository.findById(id)
+        if(!book) 
+            throw new BadRequestError("Livro não existe")
+
+        if(book.rentedBy)
+            throw new BadRequestError('Livro ja foi alugado')
+
         return await BookRepository.deleteById(id)
 	}
 }

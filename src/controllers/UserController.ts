@@ -6,6 +6,11 @@ import UserRepository from '../repositories/UserRepository'
 import { IUser } from '../interfaces/IUser'
 
 export class UserController {
+	static async findAll(req: Request, res: Response) {
+		const users = await UserRepository.findAll() 
+		return res.status(201).json(users)
+	}
+
 	static async create(req: Request, res: Response) {
 		const { name, email, password } = req.body
 

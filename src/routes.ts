@@ -6,6 +6,7 @@ import { BookController } from './controllers/BookController'
 const routes = Router()
 
 routes.post('/login', UserController.login)
+routes.get('/users', UserController.findAll)
 routes.post('/users', UserController.create)
 
 routes.get('/books', BookController.findByQuery)
