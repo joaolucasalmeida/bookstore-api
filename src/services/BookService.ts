@@ -1,7 +1,7 @@
 import BookRepository from '../repositories/BookRepository'
 import { IBook } from '../interfaces/IBook'
 import { FilterQuery } from 'mongoose';
-import { BadRequestError } from '../helpers/api-erros';
+import { BadRequestError, NotFoundError } from '../helpers/api-erros';
 
 export class BookService {
     static async findById(id: string): Promise<IBook | null> {
@@ -20,7 +20,7 @@ export class BookService {
 	static async update(id: string, data: IBook) {
         const book = await BookRepository.findById(id)
         if(!book) 
-            throw new BadRequestError("Livro não existe")
+            throw new NotFoundError("Livro não existe")
 
         if(book.rentedBy && (data.rentedBy != null))
             throw new BadRequestError('Livro ja foi alugado')
@@ -31,7 +31,7 @@ export class BookService {
     static async delete(id: string) {
         const book = await BookRepository.findById(id)
         if(!book) 
-            throw new BadRequestError("Livro não existe")
+            throw new NotFoundError("Livro não existe")
 
         if(book.rentedBy)
             throw new BadRequestError('Livro ja foi alugado')

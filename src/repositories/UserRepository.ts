@@ -14,8 +14,7 @@ class UserRepository {
     return User.findOne({ email }).exec();
   }
 
-  static async create(data: IUser
-  ): Promise<IUser> {
+  static async create(data: IUser): Promise<IUser> {
     const user = new User(data);
     await user.save();
     return user;

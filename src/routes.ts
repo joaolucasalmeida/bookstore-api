@@ -6,16 +6,13 @@ import { BookController } from './controllers/BookController'
 const routes = Router()
 
 routes.post('/login', UserController.login)
-routes.get('/users', UserController.findAll)
-routes.post('/users', UserController.create)
+routes.get('/users', authMiddleware, UserController.findAll)
+routes.post('/users', authMiddleware, UserController.create)
 
-routes.get('/books', BookController.findByQuery)
-routes.get('/books/:id', BookController.findById)
-routes.post('/books', BookController.create)
-routes.put('/books/:id', BookController.update)
-routes.delete('/books/:id', BookController.delete)
-
-//routes.use(authMiddleware)
-
+routes.get('/books', authMiddleware, BookController.findByQuery)
+routes.get('/books/:id',authMiddleware, BookController.findById)
+routes.post('/books', authMiddleware, BookController.create)
+routes.put('/books/:id', authMiddleware, BookController.update)
+routes.delete('/books/:id', authMiddleware, BookController.delete)
 
 export default routes
