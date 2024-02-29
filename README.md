@@ -1,4 +1,7 @@
-# Soft Design API
+# Bookstore API
+
+## Sobre
+API construída em Node.js para gerenciar o aluguel livros de uma biblioteca.
 
 ## Configuração e Execução do Projeto
 
